@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Bell, ChevronRight } from 'lucide-react';
-import { motion, useReducedMotion } from 'motion/react';
+import { LazyMotion, domAnimation, m, useReducedMotion } from 'motion/react';
 import { MobileShell } from '@/components/layout/MobileShell';
 import { BottomTabBar } from '@/components/layout/BottomTabBar';
 import { LifePathHeroCard } from '@/components/numerology/LifePathHeroCard';
@@ -34,6 +34,7 @@ export default function DashboardPage() {
 
   return (
     <MobileShell withTabBar>
+      <LazyMotion features={domAnimation}>
       <div className="flex flex-col gap-4 px-4 pt-14 pb-4">
         {/* Header */}
         <div className="flex items-center gap-3">
@@ -81,7 +82,7 @@ export default function DashboardPage() {
               const val = numbers[type as keyof typeof numbers] as number;
               const reading = getReading(type, val);
               return (
-                <motion.div
+                <m.div
                   key={type}
                   initial={prefersReduced ? {} : { opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -92,12 +93,13 @@ export default function DashboardPage() {
                     value={val}
                     name={reading?.name}
                   />
-                </motion.div>
+                </m.div>
               );
             })}
           </div>
         </div>
       </div>
+      </LazyMotion>
       <BottomTabBar />
     </MobileShell>
   );

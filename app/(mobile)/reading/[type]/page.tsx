@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { Share2, BookmarkPlus, BookmarkCheck } from 'lucide-react';
-import { motion, useReducedMotion } from 'motion/react';
+import { LazyMotion, domAnimation, m, useReducedMotion } from 'motion/react';
 import { MobileShell } from '@/components/layout/MobileShell';
 import { MobileHeader } from '@/components/layout/MobileHeader';
 import { KeywordChip } from '@/components/numerology/KeywordChip';
@@ -83,9 +83,10 @@ export default function ReadingPage() {
         }
       />
 
+      <LazyMotion features={domAnimation}>
       <div className="flex-1 overflow-y-auto no-scrollbar">
         {/* Hero card — fade in */}
-        <motion.div
+        <m.div
           className="mx-4 mb-4 rounded-3xl overflow-hidden bg-linear-to-br from-surface3 via-[#1e1a40] to-surface border border-purple/30 p-6"
           initial={prefersReduced ? {} : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -103,7 +104,7 @@ export default function ReadingPage() {
               <KeywordChip key={kw} label={kw} />
             ))}
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Tabs */}
         <div className="px-4 mb-4">
@@ -219,6 +220,7 @@ export default function ReadingPage() {
           {saved ? 'Đã lưu lá số' : saveError ? 'Thử lại' : 'Lưu lá số của tôi'}
         </button>
       </div>
+      </LazyMotion>
     </MobileShell>
   );
 }

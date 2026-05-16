@@ -2,7 +2,7 @@
 import { useState, useMemo, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { BookmarkPlus, BookmarkCheck, CalendarDays, Loader2 } from 'lucide-react';
-import { motion, useReducedMotion } from 'motion/react';
+import { LazyMotion, domAnimation, m, useReducedMotion } from 'motion/react';
 import { MobileShell } from '@/components/layout/MobileShell';
 import { MobileHeader } from '@/components/layout/MobileHeader';
 import { BottomTabBar } from '@/components/layout/BottomTabBar';
@@ -75,9 +75,10 @@ function ResultContent() {
     <MobileShell withTabBar>
       <MobileHeader title="Lá số" />
 
+      <LazyMotion features={domAnimation}>
       <div className="px-4 pb-44 flex flex-col gap-4">
         {/* Hero */}
-        <motion.div
+        <m.div
           className="flex flex-col items-center gap-3 py-6"
           initial={prefersReduced ? {} : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -96,7 +97,7 @@ function ResultContent() {
               <p className="text-gold text-sm font-medium mt-1.5">{lpReading.name}</p>
             )}
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Numbers grid */}
         <div className="p-4 rounded-2xl bg-surface border border-numera-border">
@@ -178,6 +179,7 @@ function ResultContent() {
           {saving ? 'Đang lưu...' : saved ? 'Đã lưu — chuyển trang...' : saveError ? 'Thử lại' : 'Lưu lá số này'}
         </button>
       </div>
+      </LazyMotion>
 
       <BottomTabBar />
     </MobileShell>

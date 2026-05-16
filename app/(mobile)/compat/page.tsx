@@ -1,4 +1,3 @@
-'use client';
 import Link from 'next/link';
 import { Heart, Plus } from 'lucide-react';
 import { MobileShell } from '@/components/layout/MobileShell';

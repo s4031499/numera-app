@@ -1,6 +1,6 @@
 'use client';
 import { Star, Calendar, Heart } from 'lucide-react';
-import { motion, useReducedMotion } from 'motion/react';
+import { LazyMotion, domAnimation, m, useReducedMotion } from 'motion/react';
 import { MobileShell } from '@/components/layout/MobileShell';
 import { EyeLogo } from '@/components/numerology/EyeLogo';
 import { FeaturePill } from '@/components/numerology/FeaturePill';
@@ -27,14 +27,15 @@ export default function WelcomePage() {
 
   return (
     <MobileShell>
+      <LazyMotion features={domAnimation}>
       <div className="flex flex-col flex-1 px-6 pt-16 pb-10">
         {/* Logo */}
-        <motion.div className="flex justify-center mb-8" {...fadeUp(0)}>
+        <m.div className="flex justify-center mb-8" {...fadeUp(0)}>
           <EyeLogo size={180} />
-        </motion.div>
+        </m.div>
 
         {/* Headline */}
-        <motion.div className="text-center mb-8" {...fadeUp(0.15)}>
+        <m.div className="text-center mb-8" {...fadeUp(0.15)}>
           <h1 className="text-3xl font-bold text-text leading-tight mb-3">
             Khám phá con số định mệnh
           </h1>
@@ -42,19 +43,19 @@ export default function WelcomePage() {
             Thần số học cá nhân — hé lộ vận mệnh, tính cách,
             và con đường cuộc đời của bạn
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Feature pills — stagger */}
         <div className="flex flex-col gap-3 mb-10">
           {PILLS.map(({ icon, label }, i) => (
-            <motion.div key={label} {...fadeUp(0.25 + i * 0.08)}>
+            <m.div key={label} {...fadeUp(0.25 + i * 0.08)}>
               <FeaturePill icon={icon} label={label} />
-            </motion.div>
+            </m.div>
           ))}
         </div>
 
         {/* CTA */}
-        <motion.div className="mt-auto flex flex-col items-center gap-4" {...fadeUp(0.5)}>
+        <m.div className="mt-auto flex flex-col items-center gap-4" {...fadeUp(0.5)}>
           <button
             onClick={signInWithGoogle}
             className="w-full py-4 rounded-2xl bg-gold text-bg font-bold text-base flex items-center justify-center gap-3 active:scale-95 transition-transform"
@@ -71,8 +72,9 @@ export default function WelcomePage() {
           <p className="text-text-muted text-xs text-center leading-relaxed">
             Bằng cách tiếp tục, bạn đồng ý với Điều khoản dịch vụ
           </p>
-        </motion.div>
+        </m.div>
       </div>
+      </LazyMotion>
     </MobileShell>
   );
 }
