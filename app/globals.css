@@ -1,0 +1,149 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* ── NUMERA Design Tokens ── */
+  --color-bg:       #0d0d1a;
+  --color-surface:  #131325;
+  --color-surface2: #1a1a35;
+  --color-surface3: #22204a;
+
+  --color-numera-border: #2a2a4a;
+
+  --color-purple:       #7c3aed;
+  --color-purple-dark:  #6d28d9;
+  --color-purple-light: #a78bfa;
+  --color-gold:         #f59e0b;
+  --color-gold-light:   #fbbf24;
+
+  /* Semantic number colors */
+  --color-life-path:   #f59e0b;
+  --color-soul:        #a78bfa;
+  --color-personality: #34d399;
+  --color-expression:  #f472b6;
+  --color-birthday:    #60a5fa;
+  --color-pyear:       #f97316;
+
+  --color-text:       #e2e8f0;
+  --color-text-muted: #94a3b8;
+
+  /* Map shadcn tokens → NUMERA palette */
+  --color-background:        #0d0d1a;
+  --color-foreground:        #e2e8f0;
+  --color-card:              #131325;
+  --color-card-foreground:   #e2e8f0;
+  --color-popover:           #131325;
+  --color-popover-foreground:#e2e8f0;
+  --color-primary:           #f59e0b;
+  --color-primary-foreground:#0d0d1a;
+  --color-secondary:         #1a1a35;
+  --color-secondary-foreground: #e2e8f0;
+  --color-muted:             #1a1a35;
+  --color-muted-foreground:  #94a3b8;
+  --color-accent:            #22204a;
+  --color-accent-foreground: #e2e8f0;
+  --color-destructive:       #ef4444;
+  --color-border:            #2a2a4a;
+  --color-input:             #1a1a35;
+  --color-ring:              #7c3aed;
+
+  /* Radius */
+  --radius-sm: 0.625rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+  --radius-3xl: 1.5rem;
+
+  /* Font */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+:root {
+  --background: #0d0d1a;
+  --foreground: #e2e8f0;
+  --card: #131325;
+  --card-foreground: #e2e8f0;
+  --popover: #131325;
+  --popover-foreground: #e2e8f0;
+  --primary: #f59e0b;
+  --primary-foreground: #0d0d1a;
+  --secondary: #1a1a35;
+  --secondary-foreground: #e2e8f0;
+  --muted: #1a1a35;
+  --muted-foreground: #94a3b8;
+  --accent: #22204a;
+  --accent-foreground: #e2e8f0;
+  --destructive: #ef4444;
+  --border: #2a2a4a;
+  --input: #1a1a35;
+  --ring: #7c3aed;
+  --radius: 1rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    overflow-x: hidden; /* prevent horizontal scroll */
+  }
+  body {
+    @apply bg-bg text-text font-sans antialiased;
+    overflow-x: hidden;
+    min-width: 320px; /* support iPhone SE 1st gen */
+  }
+  input, textarea, select {
+    font-size: 16px; /* prevent iOS auto-zoom */
+  }
+}
+
+/* Starfield background effect */
+.starfield {
+  background-image:
+    radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 45%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 20%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 60%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 35%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 20% 75%, rgba(255,255,255,0.25) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 85%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 5% 50%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 65% 90%, rgba(255,255,255,0.2) 0%, transparent 100%);
+}
+
+/* Gold glow effect */
+.glow-gold {
+  box-shadow: 0 0 40px rgba(245, 158, 11, 0.3), 0 0 80px rgba(245, 158, 11, 0.1);
+}
+
+/* Purple glow */
+.glow-purple {
+  box-shadow: 0 0 40px rgba(124, 58, 237, 0.4), 0 0 80px rgba(124, 58, 237, 0.15);
+}
+
+/* Safe areas */
+.safe-top { padding-top: env(safe-area-inset-top, 20px); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 16px); }
+
+/* Keyboard focus — visible outline for accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Scrollbar hidden */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
