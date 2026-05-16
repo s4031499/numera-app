@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { UserProvider } from '@/contexts/UserContext';
 
-export default function MobileLayout({ children }: { children: ReactNode }) {
+export default function WebLayout({ children }: { children: ReactNode }) {
   return <UserProvider>{children}</UserProvider>;
 }
