@@ -5,6 +5,7 @@ import {
   useState,
   useEffect,
   useCallback,
+  useMemo,
   type ReactNode,
 } from 'react';
 import type { User } from '@supabase/supabase-js';
@@ -90,25 +91,28 @@ export function UserProvider({ children }: { children: ReactNode }) {
     setProfileState(null);
   }, [supabase]);
 
-  const numbers: NumerologyNumbers | null = profile
-    ? calcAll(profile.name, profile.day, profile.month, profile.year)
-    : null;
-
-  return (
-    <UserContext.Provider
-      value={{
-        user,
-        profile,
-        numbers,
-        setProfile,
-        clearProfile,
-        signInWithGoogle,
-        signOut,
-      }}
-    >
-      {children}
-    </UserContext.Provider>
+  const numbers = useMemo<NumerologyNumbers | null>(
+    () =>
+      profile
+        ? calcAll(profile.name, profile.day, profile.month, profile.year)
+        : null,
+    [profile],
   );
+
+  const value = useMemo<UserContextValue>(
+    () => ({
+      user,
+      profile,
+      numbers,
+      setProfile,
+      clearProfile,
+      signInWithGoogle,
+      signOut,
+    }),
+    [user, profile, numbers, setProfile, clearProfile, signInWithGoogle, signOut],
+  );
+
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }
 
 export function useUser() {
