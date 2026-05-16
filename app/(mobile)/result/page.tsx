@@ -52,7 +52,7 @@ function ResultContent() {
 
   if (!numbers || !name) return null;
 
-  const lpReading  = getReading('lifePath', numbers.lifePath) as any;
+  const lpReading  = getReading('lifePath', numbers.lifePath);
   const initials   = getInitials(name);
   const avatarClass = AVATAR_BG[name.charCodeAt(0) % AVATAR_BG.length];
 
@@ -115,7 +115,7 @@ function ResultContent() {
               </div>
             </div>
             <p className="text-text-muted text-sm leading-relaxed line-clamp-4">
-              {lpReading.overview ?? lpReading.meaning}
+              {lpReading.overview}
             </p>
             <div className="flex flex-wrap gap-1.5 mt-3">
               {(lpReading.keywords ?? []).slice(0, 3).map((kw: string) => (

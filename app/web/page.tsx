@@ -126,7 +126,7 @@ export default function WebDashboardPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
             {ALL_INDICATORS.map(type => {
               const val = numbers[type as keyof typeof numbers] as number;
-              const reading = getReading(type as any, val);
+              const reading = getReading(type, val);
               return (
                 <NumberCard key={type} type={type} value={val} name={reading?.name} />
               );

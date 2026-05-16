@@ -107,7 +107,7 @@ export default function SavedDetailPage() {
               </div>
             </div>
             <p className="text-text-muted text-sm leading-relaxed line-clamp-4">
-              {(lpReading as any).overview || (lpReading as any).meaning}
+              {lpReading?.overview}
             </p>
             <div className="flex flex-wrap gap-1.5 mt-3">
               {lpReading.keywords.slice(0, 3).map(kw => (

@@ -12,7 +12,7 @@ import { actionSaveReading, actionIsAlreadySaved } from '@/lib/actions/readings'
 import { useCountUp } from '@/lib/hooks/useCountUp';
 import { formatDate } from '@/lib/utils';
 import { INDICATORS } from '@/types/numerology';
-import type { ReadingType } from '@/types/numerology';
+import type { ReadingType, ReadingRecord } from '@/types/numerology';
 
 const TAB_LABELS = ['Ý nghĩa', 'Sự nghiệp', 'Tình yêu'] as const;
 
@@ -46,7 +46,7 @@ export default function ReadingPage() {
 
   if (!profile || !numbers || !meta) return null;
 
-  const reading = getReading(type as any, value) as any;
+  const reading = getReading(type, value) as ReadingRecord | null;
   if (!reading) return null;
 
   const handleSave = async () => {

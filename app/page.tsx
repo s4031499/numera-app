@@ -50,7 +50,7 @@ export default function LandingPage() {
                 { icon: Star,     label: 'Số chủ đạo' },
                 { icon: Calendar, label: 'Vận mệnh năm' },
                 { icon: Heart,    label: 'Tương hợp' },
-              ].map(({ icon: Icon, label }) => (
+              ].map(({ label }) => (
                 <div key={label} className="flex items-center gap-3 text-sm text-text-muted">
                   <CheckCircle size={16} className="text-personality shrink-0" />
                   {label}

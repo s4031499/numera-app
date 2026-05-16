@@ -16,7 +16,7 @@ export {
 import type {
   ReadingType, LifePathReading, ExpressionReading, SoulUrgeReading,
   PersonalityReading, BirthdayReading, PersonalYearReading,
-  LuckyInfo, CompatibilityPair,
+  AnyReading, LuckyInfo, CompatibilityPair,
 } from '@/types/numerology';
 
 function reduceToSingle(n: number): number {
@@ -31,7 +31,8 @@ export function getReading(type: 'soulUrge', number: number): SoulUrgeReading | 
 export function getReading(type: 'personality', number: number): PersonalityReading | null;
 export function getReading(type: 'birthday', number: number): BirthdayReading | null;
 export function getReading(type: 'personalYear', number: number): PersonalYearReading | null;
-export function getReading(type: ReadingType, number: number): unknown {
+export function getReading(type: ReadingType, number: number): AnyReading | null;
+export function getReading(type: ReadingType, number: number): AnyReading | null {
   const maps: Record<ReadingType, Record<number, unknown>> = {
     lifePath: LIFE_PATH,
     expression: EXPRESSION,
@@ -42,7 +43,7 @@ export function getReading(type: ReadingType, number: number): unknown {
   };
   const map = maps[type];
   if (!map) return null;
-  return map[number] ?? map[reduceToSingle(number)] ?? null;
+  return (map[number] ?? map[reduceToSingle(number)] ?? null) as AnyReading | null;
 }
 
 export function getLucky(lifePathNumber: number): LuckyInfo {

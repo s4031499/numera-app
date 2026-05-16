@@ -38,7 +38,6 @@ export function normalizeVietnamese(name: string): string {
     .map(c => VI_MAP[c] ?? c)           // map Vietnamese-specific chars (đ/ơ/ư…)
     .join('')
     .normalize('NFD')                    // decompose any remaining diacritics
-    // eslint-disable-next-line no-misleading-character-class
     .replace(/\p{M}/gu, '')             // strip all Unicode combining marks
     .toUpperCase()
     .replace(/[^A-Z\s]/g, '')           // strip any non-alpha leftovers

@@ -79,6 +79,7 @@ export interface PersonalityReading {
 
 export interface BirthdayReading {
   number: number;
+  name?: string;
   reducedTo?: number;
   isMaster?: boolean;
   keywords: string[];
@@ -88,6 +89,7 @@ export interface BirthdayReading {
 
 export interface PersonalYearReading {
   number: number;
+  name?: string;
   isMaster?: boolean;
   theme: string;
   energy: string;
@@ -104,6 +106,24 @@ export interface PersonalYearReading {
 
 // Union of all reading types
 export type AnyReading = LifePathReading | ExpressionReading | SoulUrgeReading | PersonalityReading | BirthdayReading | PersonalYearReading;
+
+// Flexible record for UI consumption (all reading fields as optional)
+export interface ReadingRecord {
+  name?: string;
+  keywords?: string[];
+  overview?: string;
+  meaning?: string;
+  innerDesire?: string;
+  impression?: string;
+  gift?: string;
+  career?: string;
+  love?: string;
+  fulfilled?: string;
+  attractedTo?: string;
+  strengths?: string[];
+  challenges?: string[];
+  advice?: string;
+}
 
 // ── Lucky info ─────────────────────────────────────────────────────────────
 export interface LuckyColor {

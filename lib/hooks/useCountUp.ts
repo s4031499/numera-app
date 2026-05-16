@@ -7,7 +7,7 @@ export function useCountUp(target: number, duration = 600): number {
   const prefersReduced = useReducedMotion();
 
   useEffect(() => {
-    if (prefersReduced) { setCount(target); return; }
+    if (prefersReduced) return;
     const start = Date.now();
     const tick = () => {
       const elapsed = Date.now() - start;
@@ -19,5 +19,5 @@ export function useCountUp(target: number, duration = 600): number {
     requestAnimationFrame(tick);
   }, [target, duration, prefersReduced]);
 
-  return count;
+  return prefersReduced ? target : count;
 }

@@ -79,7 +79,7 @@ export default function DashboardPage() {
           <div className="grid grid-cols-2 gap-3">
             {GRID_INDICATORS.map((type, i) => {
               const val = numbers[type as keyof typeof numbers] as number;
-              const reading = getReading(type as any, val);
+              const reading = getReading(type, val);
               return (
                 <motion.div
                   key={type}

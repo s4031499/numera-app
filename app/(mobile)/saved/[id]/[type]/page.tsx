@@ -10,7 +10,7 @@ import { useCountUp } from '@/lib/hooks/useCountUp';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { getReading } from '@/data/index';
 import { INDICATORS } from '@/types/numerology';
-import type { SavedReading, ReadingType } from '@/types/numerology';
+import type { SavedReading, ReadingType, ReadingRecord } from '@/types/numerology';
 
 const TAB_LABELS = ['Ý nghĩa', 'Sự nghiệp', 'Tình yêu'] as const;
 
@@ -47,7 +47,7 @@ export default function SavedReadingTypePage() {
     </MobileShell>
   );
 
-  const readingData = getReading(type as any, value) as any;
+  const readingData = getReading(type, value) as ReadingRecord | null;
   if (!readingData) return null;
 
   const tabContent = [

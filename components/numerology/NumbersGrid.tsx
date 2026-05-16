@@ -15,7 +15,7 @@ export function NumbersGrid({ numbers, linkPrefix }: NumbersGridProps) {
     <div className="grid grid-cols-3 gap-3">
       {INDICATORS.map(ind => {
         const val = numbers[ind.key as keyof NumerologyNumbers] as number;
-        const r   = getReading(ind.key as any, val) as any;
+        const r   = getReading(ind.key, val);
         const content = (
           <>
             {linkPrefix && (
